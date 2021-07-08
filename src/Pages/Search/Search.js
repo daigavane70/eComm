@@ -13,22 +13,25 @@ const ListOptions = () => {
   });
   const [cards, setCards] = useState([]);
   const applyFilters = (cardList) => {
-    // let newCards = cardList;
-    let newCards = [];
-    let filterKeyPoints = [];
+    let newCards = cardList;
+    // let newCards = [];
+    // let filterKeyPoints = [];
     // filtering Based on search
     if (filters.name !== "") {
-      filterKeyPoints = filters.name.split(" ");
-      console.log(filterKeyPoints, newCards);
-      filterKeyPoints.map((key) => {
-        newCards = [
-          ...newCards,
-          ...cardList.filter(
-            (item) => item.name.toUpperCase().includes(key.toUpperCase())
-            // item.name.toUpperCase().includes(filters.name.toUpperCase())
-          ),
-        ];
-      });
+      // filterKeyPoints = filters.name.split(" ");
+      // console.log(filterKeyPoints, newCards);
+      // filterKeyPoints.map((key) => {
+      //   newCards = [
+      //     ...newCards,
+      //     ...cardList.filter(
+      //       (item) => item.name.toUpperCase().includes(key.toUpperCase())
+      //       // item.name.toUpperCase().includes(filters.name.toUpperCase())
+      //     ),
+      //   ];
+      // });
+      newCards = cardList.filter((item) =>
+        item.name.toUpperCase().includes(filters.name.toUpperCase())
+      );
     }
     // filtering based on rating
     if (filters.rating !== "") {
@@ -38,7 +41,6 @@ const ListOptions = () => {
     if (filters.price !== "") {
       newCards = newCards.filter((item) => item.price <= filters.price);
     }
-
     return newCards;
   };
   useEffect(() => {
